@@ -12,7 +12,6 @@
 int a = 0;
 void setup(){
   Serial.begin(250000);
-  Serial.print("hi");
   DDRB = B00111111;
   DDRD = B00000010;
   PORTD = B00000100;
@@ -20,7 +19,6 @@ void setup(){
 
 void loop(){
   PORTB = B00000000;
-  while(PIND & B00000100);
   playSong();
 }
 
@@ -119,7 +117,6 @@ void playSong(){
   unsigned long duration;
 
   while (curr_lead_note < lead_note_count && curr_bass_note < bass_note_count) {
-    if(PIND & B00000100) return;
     lead_freq = lead_notes[curr_lead_note];
     bass_freq = bass_notes[curr_bass_note];
     note_value = min(curr_lead_note_time_remaining, curr_bass_note_time_remaining);
